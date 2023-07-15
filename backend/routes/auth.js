@@ -4,7 +4,7 @@ const router = express.Router();
 const {body, validationResult } = require("express-validator");
 
 
-// Create a User using : POST "/api/auth/". No Login Required ,Doesn't require Auth
+// Create a User using : POST "/api/auth/createuser". No Login Required ,Doesn't require Auth
 router.post("/createuser",[
     body("email","Enter a valid email").isEmail(),
     body("name","Enter a valid name").isLength({min:3}),
@@ -17,12 +17,12 @@ router.post("/createuser",[
         return res.status(400).json({errors: errors.array()});
     }
     try{
-
         // Check whether the user with this email exists already
         let user = await User.findOne({email:req.body.email});
         if(user){
             return res.status(400).json({error:" Sorry,a user with this email already exists..."})
         }
+        // Create a new user in User Schema
         user = await User.create({
             email:req.body.email,
             password:req.body.password,
