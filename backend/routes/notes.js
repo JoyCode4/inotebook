@@ -14,7 +14,7 @@ router.get("/fetchallnotes",fetchuser,async (req,res)=>{
     }
 })
 
-// Route 1 - Add a new note using : POST "/api/notes/addnote". Login required
+// Route 2 - Add a new note using : POST "/api/notes/addnote". Login required
 router.post("/addnote",fetchuser,[
     body("title","Enter valid a title").isLength({min:3}),
     body("description","Enter valid a description").isLength({min:5}),
@@ -40,5 +40,27 @@ router.post("/addnote",fetchuser,[
     }
 })
 
-
+// Route 3 - Update an existing note using : PUT "/api/notes/update/:id". Login required
+router.put("/updatenote/:id",fetchuser,async (req,res)=>{
+    const {tag,description,title}=req.body;
+    const newNote = {};
+    if(title){
+        newNote.title=title;
+    }
+    if(tag){
+        newNote.tag=tag;
+    }
+    if(description){
+        newNote.description=description;
+    }
+    let note = await Notes.findById(req.params.id);
+    if(!note){
+        return res.status(401).send("User Not Found");
+    }
+    if(note.user.toString() !== req.user.id){
+        return res.status(401).send("Not Allowed");
+    }
+    note = await Notes.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true});
+    res.json({note});
+})
 module.exports = router;
