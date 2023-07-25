@@ -11,7 +11,7 @@ const fetchuser=(req,res,next)=>{
         req.user=data.user;
         next();
     }catch(err){
-        return res.status(500).send({err:"Internal Server Error"});
+        return res.status(500).send({err:"Please authenticate using a valid token"});
     }
 }
 
