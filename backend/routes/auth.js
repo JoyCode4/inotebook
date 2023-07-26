@@ -55,6 +55,7 @@ router.post("/login",[
     body("email","Enter a valid email").isEmail(),
     body("password","Password can't be blank").exists(),
 ],async (req,res)=>{
+    let success=false;
     const errors=validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()})
@@ -76,9 +77,9 @@ router.post("/login",[
                 id:user.id
             }
         }
-
+        success = true;
         const authtoken = jwt.sign(data,JWT_SECRET);
-        return res.status(200).json({authtoken});
+        return res.status(200).json({success,authtoken});
     }catch(err){
         console.error(err.message);
         res.status(500).send("Internal Server Error");

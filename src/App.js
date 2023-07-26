@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import { BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import NoteState from './context/notes/noteState';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 function App() {
   return (
     <div className="App">
@@ -16,6 +18,8 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/signup' element={<SignUp/>}/>
             </Routes>
           </div>
         </Router>
