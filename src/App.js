@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import { BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import NoteState from './context/notes/noteState';
-
 function App() {
   return (
     <div className="App">
