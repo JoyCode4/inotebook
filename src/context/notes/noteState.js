@@ -42,15 +42,7 @@ const NoteState = (props) =>{
       console.log(json);
 
       console.log("adding a Note");
-      const note = {
-        "_id": "64bf99760e5a3be798573f38",
-        "user": "64b29c4d2e6ce3c7a4e7de48",
-        "title": title,
-        "description": description,
-        "tag": tag,
-        "date": "2023-07-25T09:44:22.649Z",
-        "__v": 0
-      }
+      const note = await json;
       setNotes(notes.concat(note));
     }
 
@@ -93,14 +85,16 @@ const NoteState = (props) =>{
       console.log(json);
 
       console.log("Updating a Note");
-      for(let i of notes){
-        if(i._id===id){
-          i.title=title;
-          i.description=description;
-          i.tag=tag;
+      const newNotes=notes.filter((note)=>{
+        if(note._id==id){
+          note.title=title;
+          note.description=description;
+          note.tag=tag
         }
-      }
-
+        return note 
+      })
+      console.log(newNotes);
+      setNotes(newNotes);
     }
 
 
@@ -109,6 +103,7 @@ const NoteState = (props) =>{
             {props.children}
         </NoteContext.Provider>
     )
+  
 }
 
 export default NoteState;
