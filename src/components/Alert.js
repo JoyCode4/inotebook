@@ -1,10 +1,13 @@
 import React from 'react'
 
 const Alert = (props) => {
-    const {message}=props;
-    return (
-          <div id='alert' className="alert alert-primary" role="alert">
-            {message}
+
+  const {alert}=props;
+        return (
+          <div style={{height:"50px"}}>
+            {alert && <div className={`alert alert-${alert.type} alert-dismissible fade show`} role="alert">
+              <strong>{alert.type} :</strong> {alert.msg}
+            </div> }
           </div>
         )
   }

@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import NoteContext from '../context/notes/noteContext';
 
 const SignUp = () => {
+    const {showAlert}=useContext(NoteContext);
     const [details, setDetails] = useState({ name: "", email: "", password: "",cpassword:"" });
     const navigate=useNavigate();
     const onChange = (e) => {
@@ -24,19 +26,19 @@ const SignUp = () => {
             if(json.success){
                 localStorage.setItem("token",json.authtoken);
                 navigate("/");
+                showAlert("Sign UP SuccessFully","success");
             }else{
-                alert("Invalid Credentials");
+                showAlert("Invalid Credentials","danger");
             }
         }
         else{
-            alert("Password and Confirm Password must be same");
-            console.error("Password and Confirm Password must be same");
+            showAlert("Password and Confirm Password must be same","danger");
         }
     }
     return (
         <div className='container w-50'>
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+                <div className="mt-5 mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name" name='name' onChange={onChange} aria-describedby="emailHelp" />
                 </div>

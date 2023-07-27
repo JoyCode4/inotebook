@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
+import NoteContext from '../context/notes/noteContext';
 // us useNavigate instead of the useHistory
 const Login = () => {
+    const {alert,showAlert}=useContext(NoteContext);
     const [credentials,setCredentials]=useState({email:"",password:""});
     const navigate=useNavigate();
     const handleSubmit=async (e)=>{
@@ -22,9 +24,10 @@ const Login = () => {
             // Save the auth token and redirect
             localStorage.setItem("token",json.authtoken);
             navigate("/");
-
+            showAlert("Login SuccessFully","success");
         }else{
-            alert("Invalid Credentials");
+            // alert("Invalid Credentials");
+            showAlert("Invalid Credentials","danger");
         }
     }
 
@@ -35,7 +38,7 @@ const Login = () => {
   return (
     <div className='container w-50'>
       <form onSubmit={handleSubmit}>
-            <div className="mb-3">
+            <div className="mt-5 mb-3">
                 <label htmlFor="email" className="form-label">Email address</label>
                 <input type="email" className="form-control" id="email" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp"/>
                 <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
