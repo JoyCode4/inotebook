@@ -17,6 +17,7 @@ router.post("/createuser",[
     // console.log(req.body);
     // If there are errors, return bad request and the errors
     const errors = validationResult(req);
+    let success = false;
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()});
     }
@@ -39,11 +40,11 @@ router.post("/createuser",[
                 id:user.id
             }
         }
-
+        success=true;
         const authtoken = jwt.sign(data,JWT_SECRET);
         console.log(authtoken);
 
-        res.status(200).json({authtoken});
+        res.status(200).json({success,authtoken});
     }catch(err){
         console.error(err.message);
         res.status(500).send("Internal Server Error");
