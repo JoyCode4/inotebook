@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import NoteContext from '../context/notes/noteContext';
 // us useNavigate instead of the useHistory
 const Login = () => {
-    const {alert,showAlert}=useContext(NoteContext);
+    const {showAlert}=useContext(NoteContext);
     const [credentials,setCredentials]=useState({email:"",password:""});
     const navigate=useNavigate();
     const handleSubmit=async (e)=>{
