@@ -12,7 +12,7 @@ const NoteState = (props) =>{
         setAlert(null);
       },2000)
     }
-    const host = "http://localhost:5000";
+    const host = "https://inotebook-backend-lfmh.onrender.com";
     
     const [notes,setNotes]=useState(notesInitially);
     
