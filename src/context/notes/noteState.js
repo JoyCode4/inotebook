@@ -12,13 +12,13 @@ const NoteState = (props) =>{
         setAlert(null);
       },2000)
     }
-    const host = "http://localhost:5000";
+    const host = "https://inotebook-backend-lfmh.onrender.com";
     
     const [notes,setNotes]=useState(notesInitially);
     
     const getNotes = async ()=>{
       // Added API
-      const response = await fetch(`${host}/api/notes/fetchallnotes`,{
+      const response = await fetch(`${host}/notes/fetchallnotes`,{
         method:"GET",
         headers:{
           "Content-Type":"application/json",
@@ -34,7 +34,7 @@ const NoteState = (props) =>{
     // Function 1 : Add a note
     const addNote =async (title,description,tag)=>{
       // API Call
-      const response = await fetch(`${host}/api/notes/addnote`,{
+      const response = await fetch(`${host}/notes/addnote`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json",
@@ -56,7 +56,7 @@ const NoteState = (props) =>{
     // Function 2 : Delete a note
     const deleteNote=async (id)=>{
       // API Call
-      const response = await fetch(`${host}/api/notes/deletenote/${id}`,{
+      const response = await fetch(`${host}/notes/deletenote/${id}`,{
         method:"DELETE",
         headers:{
           "auth-token":localStorage.getItem('token'),
@@ -76,7 +76,7 @@ const NoteState = (props) =>{
     // Function 2 : Edit a note
     const editNote=async (id,title,description,tag)=>{
       // API Call
-      const response = await fetch(`${host}/api/notes/updatenote/${id}`,{
+      const response = await fetch(`${host}/notes/updatenote/${id}`,{
         method:"PUT",
         headers:{
           "Content-Type":"application/json",
