@@ -5,6 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+### `npm run both`
+
+It will Runs whole Application of the react and nodejs it is important to understand while runnning code
 
 ### `npm start`
 
