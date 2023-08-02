@@ -63,9 +63,9 @@ const NoteState = (props) =>{
         }
       });
       const json = await response.json();
-      console.log(json)
+      // console.log(json)
 
-      console.log("Deleting a Note "+id);
+      // console.log("Deleting a Note "+id);
       const newNotes = notes.filter((note)=>{return note._id !== id});
       setNotes(newNotes);
       showAlert("Note is Deleted Successfully","danger");
@@ -89,9 +89,9 @@ const NoteState = (props) =>{
         })
       })
       const json= await response.json();
-      console.log(json);
+      // console.log(json);
 
-      console.log("Updating a Note");
+      // console.log("Updating a Note");
       const newNotes=notes.filter((note)=>{
         if(note._id===id){
           note.title=title;
