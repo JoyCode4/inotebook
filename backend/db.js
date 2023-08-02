@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 dotenv.config();
-const mongoURI = process.env.MONGO_URL;
+const mongoURI = "mongodb+srv://joy:joy00004@cluster.ywai3il.mongodb.net/test?retryWrites=true&w=majority";
 
 const connectToMongo = async () =>{
     await mongoose.connect(mongoURI);
