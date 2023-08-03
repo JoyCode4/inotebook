@@ -39,7 +39,7 @@ const Notes = () => {
 
     const handleClick=(e)=>{
       e.preventDefault();
-      // console.log("Updating a Note",note);
+      console.log("Updating a Note",note);
       editNote(note.id,note.etitle,note.edescription,note.etag);
       refClose.current.click();
 
